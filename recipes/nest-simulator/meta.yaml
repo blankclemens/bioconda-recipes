@@ -1,0 +1,44 @@
+{% set name = "nest-simulator" %}
+{% set version = "2.14.0" %}
+{% set hash_type = "sha256" %}
+{% set hash_value = "afaf7d53c2d5305fac1257759cc0ea6d62c3cebf7d5cc4a07d4739af4dbb9caf" %}
+
+package:
+  name: '{{ name|lower }}'
+  version: '{{ version }}'
+
+source:
+  fn: 'v{{ version }}.tar.gz'
+  url: https://github.com/nest/{{ name }}/archive/v{{ version }}.tar.gz
+  '{{ hash_type }}': '{{ hash_value }}'
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - gsl
+    - cython
+    - cmake
+    - libtool
+    - readline
+    - openblas
+    - openmpi
+
+  run:
+    - python
+    - gsl
+    - openmpi
+    - openblas
+    - matplotlib
+
+test:
+  imports:
+    - nest
+
+about:
+  home: http://www.nest-simulator.org/
+  license: GPL
+  summary: "NEST is a simulator for spiking neural network models."
+
